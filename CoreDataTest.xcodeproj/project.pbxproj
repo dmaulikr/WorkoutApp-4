@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D80B51A71A41F538003DC4FD /* AddExerciseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80B51A61A41F538003DC4FD /* AddExerciseViewController.m */; };
+		D80B51AD1A423CC0003DC4FD /* AddExerciseDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D80B51AC1A423CC0003DC4FD /* AddExerciseDetailsViewController.m */; };
+		D80B51B11A43344A003DC4FD /* file.txt in Resources */ = {isa = PBXBuildFile; fileRef = D80B51B01A43344A003DC4FD /* file.txt */; };
+		D8BC0E8F1A817BA80042B0D4 /* Exercises.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BC0E8E1A817BA80042B0D4 /* Exercises.m */; };
 		D8E400D319E47FA600402606 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E400D219E47FA600402606 /* main.m */; };
 		D8E400D619E47FA600402606 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E400D519E47FA600402606 /* AppDelegate.m */; };
 		D8E400D919E47FA600402606 /* CoreDataTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8E400D719E47FA600402606 /* CoreDataTest.xcdatamodeld */; };
@@ -15,6 +19,8 @@
 		D8E400E119E47FA600402606 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D8E400E019E47FA600402606 /* Images.xcassets */; };
 		D8E400E419E47FA600402606 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8E400E219E47FA600402606 /* LaunchScreen.xib */; };
 		D8E400F019E47FA600402606 /* CoreDataTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E400EF19E47FA600402606 /* CoreDataTestTests.m */; };
+		D8E400FB19E6DF7E00402606 /* AddWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E400FA19E6DF7E00402606 /* AddWorkoutViewController.m */; };
+		D8E400FE19E6E8EB00402606 /* EditWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E400FD19E6E8EB00402606 /* EditWorkoutViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +34,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D80B51A51A41F538003DC4FD /* AddExerciseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExerciseViewController.h; sourceTree = "<group>"; };
+		D80B51A61A41F538003DC4FD /* AddExerciseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExerciseViewController.m; sourceTree = "<group>"; };
+		D80B51AB1A423CC0003DC4FD /* AddExerciseDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddExerciseDetailsViewController.h; sourceTree = "<group>"; };
+		D80B51AC1A423CC0003DC4FD /* AddExerciseDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddExerciseDetailsViewController.m; sourceTree = "<group>"; };
+		D80B51B01A43344A003DC4FD /* file.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = file.txt; sourceTree = "<group>"; };
+		D8BC0E8D1A817BA80042B0D4 /* Exercises.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exercises.h; sourceTree = "<group>"; };
+		D8BC0E8E1A817BA80042B0D4 /* Exercises.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exercises.m; sourceTree = "<group>"; };
 		D8E400CD19E47FA600402606 /* CoreDataTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E400D119E47FA600402606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8E400D219E47FA600402606 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -42,6 +55,10 @@
 		D8E400E919E47FA600402606 /* CoreDataTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E400EE19E47FA600402606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8E400EF19E47FA600402606 /* CoreDataTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataTestTests.m; sourceTree = "<group>"; };
+		D8E400F919E6DF7E00402606 /* AddWorkoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddWorkoutViewController.h; sourceTree = "<group>"; };
+		D8E400FA19E6DF7E00402606 /* AddWorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddWorkoutViewController.m; sourceTree = "<group>"; };
+		D8E400FC19E6E8EB00402606 /* EditWorkoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditWorkoutViewController.h; sourceTree = "<group>"; };
+		D8E400FD19E6E8EB00402606 /* EditWorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWorkoutViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				D8E400CF19E47FA600402606 /* CoreDataTest */,
-				D8E400EC19E47FA600402606 /* CoreDataTestTests */,
 				D8E400CE19E47FA600402606 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,13 +101,25 @@
 			children = (
 				D8E400D419E47FA600402606 /* AppDelegate.h */,
 				D8E400D519E47FA600402606 /* AppDelegate.m */,
+				D8E400DD19E47FA600402606 /* Main.storyboard */,
 				D8E400DA19E47FA600402606 /* ViewController.h */,
 				D8E400DB19E47FA600402606 /* ViewController.m */,
-				D8E400DD19E47FA600402606 /* Main.storyboard */,
+				D8E400F919E6DF7E00402606 /* AddWorkoutViewController.h */,
+				D8E400FA19E6DF7E00402606 /* AddWorkoutViewController.m */,
+				D8E400FC19E6E8EB00402606 /* EditWorkoutViewController.h */,
+				D8E400FD19E6E8EB00402606 /* EditWorkoutViewController.m */,
+				D80B51A51A41F538003DC4FD /* AddExerciseViewController.h */,
+				D80B51A61A41F538003DC4FD /* AddExerciseViewController.m */,
+				D80B51AB1A423CC0003DC4FD /* AddExerciseDetailsViewController.h */,
+				D80B51AC1A423CC0003DC4FD /* AddExerciseDetailsViewController.m */,
+				D8E400EC19E47FA600402606 /* CoreDataTestTests */,
 				D8E400E019E47FA600402606 /* Images.xcassets */,
 				D8E400E219E47FA600402606 /* LaunchScreen.xib */,
 				D8E400D719E47FA600402606 /* CoreDataTest.xcdatamodeld */,
+				D80B51B01A43344A003DC4FD /* file.txt */,
 				D8E400D019E47FA600402606 /* Supporting Files */,
+				D8BC0E8D1A817BA80042B0D4 /* Exercises.h */,
+				D8BC0E8E1A817BA80042B0D4 /* Exercises.m */,
 			);
 			path = CoreDataTest;
 			sourceTree = "<group>";
@@ -112,7 +140,7 @@
 				D8E400ED19E47FA600402606 /* Supporting Files */,
 			);
 			path = CoreDataTestTests;
-			sourceTree = "<group>";
+			sourceTree = SOURCE_ROOT;
 		};
 		D8E400ED19E47FA600402606 /* Supporting Files */ = {
 			isa = PBXGroup;
@@ -204,6 +232,7 @@
 			files = (
 				D8E400DF19E47FA600402606 /* Main.storyboard in Resources */,
 				D8E400E419E47FA600402606 /* LaunchScreen.xib in Resources */,
+				D80B51B11A43344A003DC4FD /* file.txt in Resources */,
 				D8E400E119E47FA600402606 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,8 +252,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D8E400D619E47FA600402606 /* AppDelegate.m in Sources */,
+				D8E400FB19E6DF7E00402606 /* AddWorkoutViewController.m in Sources */,
 				D8E400D919E47FA600402606 /* CoreDataTest.xcdatamodeld in Sources */,
+				D80B51A71A41F538003DC4FD /* AddExerciseViewController.m in Sources */,
+				D8BC0E8F1A817BA80042B0D4 /* Exercises.m in Sources */,
+				D80B51AD1A423CC0003DC4FD /* AddExerciseDetailsViewController.m in Sources */,
 				D8E400DC19E47FA600402606 /* ViewController.m in Sources */,
+				D8E400FE19E6E8EB00402606 /* EditWorkoutViewController.m in Sources */,
 				D8E400D319E47FA600402606 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +450,7 @@
 				D8E400F519E47FA600402606 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D8E400F619E47FA600402606 /* Build configuration list for PBXNativeTarget "CoreDataTestTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +459,7 @@
 				D8E400F819E47FA600402606 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
