@@ -186,7 +186,7 @@
         vc.workoutName = _selectedWorkoutName;
     }
 }
-
+/*
 -(IBAction)saveWorkout:(UIStoryboardSegue *)unwindSegue {
     //Grab the exercise names and numbers of sets/reps from EditWorkoutViewController
     //Then save them to CoreData
@@ -221,7 +221,7 @@
     
     
     [_tableView reloadData];
-}
+} */
 
 -(IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue {
     UIViewController* sourceViewController = unwindSegue.sourceViewController;

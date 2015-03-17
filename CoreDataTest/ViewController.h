@@ -20,7 +20,7 @@
 - (void)addWorkout:(NSString *)workoutName;
 - (void)fetchData;
 - (IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue;
-- (IBAction)saveWorkout:(UIStoryboardSegue *)unwindSegue;
+//- (IBAction)saveWorkout:(UIStoryboardSegue *)unwindSegue;
 
 @end
 

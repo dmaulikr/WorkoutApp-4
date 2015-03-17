@@ -23,10 +23,9 @@
     _titleLabel.text = _workoutName;
     _exercisesTableView.scrollEnabled = YES;
     _exercisesArray = [NSMutableArray array];
-  //  [_dataSourceArray addObject:@"Add new exercise..."];
-  //  _exercisesTableView.backgroundView = nil;
-    _numberOfSets = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:2], nil];
-    _numberOfReps = [NSMutableArray arrayWithObjects:[NSNumber numberWithInt:2], [NSNumber numberWithInt:1], nil];
+    _numberOfSets = [NSMutableArray array];
+    _numberOfReps = [NSMutableArray array];
+    [_saveButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     [self fetchData];
 }
 
@@ -113,8 +112,54 @@
     
 }
 
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        // PROBLEM HERE
+        /*
+        
+        
+        ||
+        ||
+        ||
+        ||
+        ||
+        ||
+        ||
+       \\//
+        \/
+         */
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"WorkoutHasExercise" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
+        
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", _exercisesArray[indexPath.row]];
+        [request setPredicate:pred];
+        
+        NSError *error;
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+
+        for (NSManagedObject *managedObject in objects) {
+            [context deleteObject:managedObject];
+        }
+        
+        NSError *deleteError = nil;
+        if (![context save:&deleteError]) {
+            NSLog(@"uh oh");
+        }
+        [self fetchData];
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -127,10 +172,6 @@
     cell.textLabel.text = [_exercisesArray objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ x %@", _numberOfSets[indexPath.row], _numberOfReps[indexPath.row]];
 
-/*     if (indexPath.row == indexPath.length) {
-         cell.detailTextLabel.text = @"";
-         _addExerciseCellIndexPath = indexPath;
-     } */
     
     return cell;
 }
@@ -140,20 +181,29 @@
     return @"Exercises:";
 }
 
--(void)addExercise:(NSString *)name numberOfSets:(NSInteger)sets numberOfReps:(NSInteger)reps {
+-(void)addExercise:(NSString *)name numberOfSets:(NSNumber *)sets numberOfReps:(NSNumber *)reps {
+    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
+    NSManagedObjectContext *context = [appDelegate managedObjectContext];
+    
+    NSError *error;
+    NSManagedObject *newExercise;
+    newExercise = [NSEntityDescription insertNewObjectForEntityForName:@"WorkoutHasExercise" inManagedObjectContext:context];
+    [newExercise setValue:_workoutName forKey:@"workoutName"];
+    [newExercise setValue:name forKey:@"exerciseName"];
+    [newExercise setValue:sets forKey:@"sets"];
+    [newExercise setValue:reps forKey:@"reps"];
+    
+    [context save:&error];
+    
+    [self fetchData];
+
+
 }
 
 
-/*
+
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 -(void)unwindToEditWorkout:(UIStoryboardSegue *)unwindSegue {
     [_exercisesTableView reloadData];
@@ -169,16 +219,30 @@
     if ([sourceViewController isKindOfClass:[AddExerciseDetailsViewController class]]) { //If the sender was Add Exercise
         
         AddExerciseDetailsViewController *vc = [unwindSegue sourceViewController];
-        _exerciseNameNew = vc.exerciseName;
-        _numberOfSets[[_exercisesArray count]] = [NSNumber numberWithInteger:[vc.setsTextField.text integerValue]];
-        _numberOfReps[[_exercisesArray count]] = [NSNumber numberWithInteger:[vc.repsTextField.text integerValue]];
-      //  [_dataSourceArray addObject:_exerciseNameNew];
-        NSUInteger index = [_exercisesArray count] - 1;
-        [_exercisesArray addObject:_exerciseNameNew];
-        //array for number of sets and reps, get indexpath.row or something
+        
+        NSNumber *sets = [NSNumber numberWithInteger:[vc.setsTextField.text integerValue]];
+        NSNumber *reps = [NSNumber numberWithInteger:[vc.repsTextField.text integerValue]];
+
+        [self addExercise:vc.exerciseName numberOfSets:sets numberOfReps:reps];
+        
     }
 
     [self fetchData];
+}
+
+- (IBAction)toggleTableViewEdit:(id)sender {
+    if (_exercisesTableView.editing == YES) {
+        //Turn editing OFF
+        [_exercisesTableView setEditing:NO];
+        [_editButton setTitle:@"Edit" forState:UIControlStateNormal];
+        _saveButton.enabled = YES;
+        
+    } else {
+        //Turn editing ON
+        [_exercisesTableView setEditing:YES];
+        [_editButton setTitle:@"Done" forState:UIControlStateNormal];
+        _saveButton.enabled = NO;
+    }
 }
 
 
