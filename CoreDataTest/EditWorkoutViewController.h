@@ -24,6 +24,6 @@
 - (IBAction)unwindToEditWorkoutAndSave:(UIStoryboardSegue *)unwindSegue;
 
 -(void)fetchData;
--(void)addExercise:(NSString *)name (NSInteger)numberof 
+-(void)addExercise:(NSString *)name numberOfSets:(NSInteger)sets numberOfReps:(NSInteger)reps;
 
 @end

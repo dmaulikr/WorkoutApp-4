@@ -140,9 +140,10 @@
     return @"Exercises:";
 }
 
-/*-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 1.0f;
-}*/
+-(void)addExercise:(NSString *)name numberOfSets:(NSInteger)sets numberOfReps:(NSInteger)reps {
+    
+}
+
 
 /*
 #pragma mark - Navigation
