@@ -144,7 +144,7 @@
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:entityDesc];
         
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", _exercisesArray[indexPath.row]];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(exerciseName = %@)", _exercisesArray[indexPath.row]];
         [request setPredicate:pred];
         
         NSError *error;
