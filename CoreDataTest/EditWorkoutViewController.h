@@ -19,12 +19,10 @@
 @property (strong, nonatomic) NSString *exerciseNameNew;
 @property (strong, nonatomic) NSMutableArray *numberOfSets;
 @property (strong, nonatomic) NSMutableArray *numberOfReps;
-@property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 
 - (IBAction)unwindToEditWorkout:(UIStoryboardSegue *)unwindSegue;
 - (IBAction)unwindToEditWorkoutAndSave:(UIStoryboardSegue *)unwindSegue;
-- (IBAction)toggleTableViewEdit:(id)sender;
 
 -(void)fetchData;
 -(void)addExercise:(NSString *)name numberOfSets:(NSNumber *)sets numberOfReps:(NSNumber *)reps;

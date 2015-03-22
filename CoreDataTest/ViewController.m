@@ -34,8 +34,42 @@
     _selectedWorkoutName = selectedCell.textLabel.text;
     [self performSegueWithIdentifier:@"editWorkoutSegue" sender:self];
 }
-/* TABLE EDITING CODE
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
  
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+ 
+        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+ 
+        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityDesc];
+ 
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", _workoutsArray[indexPath.row]];
+        [request setPredicate:pred];
+ 
+        NSError *error;
+        NSArray *objects = [context executeFetchRequest:request error:&error];
+ 
+        for (NSManagedObject *managedObject in objects) {
+        [context deleteObject:managedObject];
+        }
+ 
+        NSError *deleteError = nil;
+        if (![context save:&deleteError]) {
+        NSLog(@"uh oh");
+        }
+        [_tableView beginUpdates];
+        [_workoutsArray removeObjectAtIndex:indexPath.row];
+        [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_tableView endUpdates];
+        [self fetchData];
+
+    }
+}
+
+/*
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -51,44 +85,44 @@
 -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        
+            
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        
+            
         NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
-        
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:entityDesc];
-        
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", [_workoutsArray objectAtIndex:_deleteWorkoutIndexPath.row]];
+            
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", _workoutsArray[_deleteWorkoutIndexPath.row]];
         [request setPredicate:pred];
-        
+            
         NSError *error;
         NSArray *objects = [context executeFetchRequest:request error:&error];
-        
+            
         for (NSManagedObject *managedObject in objects) {
             [context deleteObject:managedObject];
         }
-        
+            
         NSError *deleteError = nil;
         if (![context save:&deleteError]) {
             NSLog(@"uh oh");
         }
+        [_tableView beginUpdates];
+        [_workoutsArray removeObjectAtIndex:_deleteWorkoutIndexPath.row];
+        [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:_deleteWorkoutIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_tableView endUpdates];
         [self fetchData];
+
     } else {
         
     }
 
 }
- 
+ */
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
 
--(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }

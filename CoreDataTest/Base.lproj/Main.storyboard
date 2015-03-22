@@ -303,23 +303,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NNK-tp-7Ig">
-                                        <rect key="frame" x="8" y="0.0" width="35" height="30"/>
-                                        <state key="normal" title="Back">
+                                        <rect key="frame" x="330" y="0.0" width="37" height="30"/>
+                                        <state key="normal" title="Done">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <segue destination="8w0-f3-mCh" kind="unwind" unwindAction="unwindToHomeViewController:" id="jtD-e9-7N7"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEG-IT-JyB">
-                                        <rect key="frame" x="320" y="0.0" width="47" height="30"/>
-                                        <state key="normal" title="Edit">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="toggleTableViewEdit:" destination="aWy-fb-YLh" eventType="touchUpInside" id="rjU-Bz-6qE"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -360,7 +350,6 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="editButton" destination="CEG-IT-JyB" id="d8h-qA-I2f"/>
                         <outlet property="exercisesTableView" destination="0bF-Vg-EdW" id="Gtb-gX-gxU"/>
                         <outlet property="saveButton" destination="NNK-tp-7Ig" id="hug-Xk-Nde"/>
                         <outlet property="titleLabel" destination="B71-wM-irZ" id="yDx-YH-ej4"/>

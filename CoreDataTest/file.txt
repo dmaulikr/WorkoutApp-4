@@ -2,5 +2,23 @@ Squat
 Deadlift
 Overhead Press
 Bench Press
-Row
+Barbell row
+Upright row
 Dumbbell bench press
+Dumbbell flyes
+Cable flyes
+Overhead Squat
+Front Squat
+Sumo Deadlifts
+Stiff leg deadlifts
+Leg Extensions
+Leg Press
+Leg Curls
+Situps
+Pull Ups
+Chin Ups
+Lat pulldown
+Hanging leg extension
+Cable tricep extension
+Dumbbell tricep extension
+Skullcrushers

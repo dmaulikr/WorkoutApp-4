@@ -64,6 +64,10 @@
         [_numberOfSets addObject:[matches valueForKey:@"sets"]];
         [_numberOfReps addObject:[matches valueForKey:@"reps"]];
     }
+    
+   /* if ([_exercisesArray count] == 0) {
+        [_exercisesArray addObject:@"No exercises"];
+    }*/
 
     [_exercisesTableView reloadData];
     
@@ -229,22 +233,5 @@
 
     [self fetchData];
 }
-
-- (IBAction)toggleTableViewEdit:(id)sender {
-    if (_exercisesTableView.editing == YES) {
-        //Turn editing OFF
-        [_exercisesTableView setEditing:NO];
-        [_editButton setTitle:@"Edit" forState:UIControlStateNormal];
-        _saveButton.enabled = YES;
-        
-    } else {
-        //Turn editing ON
-        [_exercisesTableView setEditing:YES];
-        [_editButton setTitle:@"Done" forState:UIControlStateNormal];
-        _saveButton.enabled = NO;
-    }
-}
-
-
 @end
 
