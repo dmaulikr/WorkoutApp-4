@@ -13,8 +13,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (strong, nonatomic) NSString *exerciseName;
-@property (assign, nonatomic) NSNumber *numberOfSets;
-@property (assign, nonatomic) NSNumber *numberOfReps;
 
 @property (weak, nonatomic) IBOutlet UITextField *setsTextField;
 @property (weak, nonatomic) IBOutlet UITextField *repsTextField;

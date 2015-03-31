@@ -18,10 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _titleLabel.text = _exerciseName;
-    _numberOfSets = [NSNumber numberWithInteger:3];
-    _numberOfReps = [NSNumber numberWithInteger:8];
-    
+    _titleLabel.text = _exerciseName;    
     
 }
 

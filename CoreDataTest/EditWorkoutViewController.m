@@ -26,6 +26,7 @@
     _numberOfSets = [NSMutableArray array];
     _numberOfReps = [NSMutableArray array];
     [_saveButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
+    _exercisesTableView.allowsSelection = NO;
     [self fetchData];
 }
 
@@ -65,9 +66,12 @@
         [_numberOfReps addObject:[matches valueForKey:@"reps"]];
     }
     
-   /* if ([_exercisesArray count] == 0) {
+/*    if ([results count]) {
         [_exercisesArray addObject:@"No exercises"];
-    }*/
+        //NSAlertView: No Exercises!
+    }
+ 
+ */
 
     [_exercisesTableView reloadData];
     
@@ -162,6 +166,10 @@
         if (![context save:&deleteError]) {
             NSLog(@"uh oh");
         }
+        [_exercisesTableView beginUpdates];
+        [_exercisesArray removeObjectAtIndex:indexPath.row];
+        [_exercisesTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [_exercisesTableView endUpdates];
         [self fetchData];
     }
 }

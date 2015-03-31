@@ -20,11 +20,12 @@
     // Do any additional setup after loading the view.
     [_exercisesTableView reloadData];
 
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"file" ofType:@"txt"];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"file" ofType:@"txt"];
 
-        NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
-        NSString *delimiter = @"\n";
-        _exercisesArray = [content componentsSeparatedByString:delimiter];
+    NSString *content = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
+    NSString *delimiter = @"\n";
+    _exercisesArray = [content componentsSeparatedByString:delimiter];
+    
 }
 
 - (void)didReceiveMemoryWarning {
