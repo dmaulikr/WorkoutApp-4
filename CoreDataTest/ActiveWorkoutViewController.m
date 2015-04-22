@@ -8,6 +8,7 @@
 
 #import "ActiveWorkoutViewController.h"
 #import "AppDelegate.h"
+#import "ActiveWorkoutCell.h"
 
 @interface ActiveWorkoutViewController ()
 
@@ -19,6 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _titleLabel.text = _workoutName;
+    _exercisesTableView.allowsSelection = NO;
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -28,7 +30,7 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
     request.resultType = NSDictionaryResultType;
-    request.propertiesToFetch = [NSArray arrayWithObjects:@"exerciseName", @"reps", @"sets", nil];
+    //request.propertiesToFetch = [NSArray arrayWithObjects:@"exerciseName", @"reps", @"sets", nil];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"(workoutName = %@)", _workoutName];
     [request setPredicate:pred];
@@ -45,8 +47,10 @@
             matches = objects[x];
             _exercises = [NSMutableArray array];
             _totalSets = [NSMutableArray array];
+            _currentSets = [NSMutableArray array];
             [_exercises addObject:[matches valueForKey:@"exerciseName"]];
             [_totalSets addObject:[matches valueForKey:@"sets"]];
+            [_currentSets addObject:[NSNumber numberWithInteger:0]];
         }
     }
 
@@ -58,12 +62,18 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellID = @"Cell";
+    static NSString *simpleTableIdentifier = @"Cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    ActiveWorkoutCell *cell = (ActiveWorkoutCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActiveWorkoutCell" owner:self options:nil];
+    cell = [nib objectAtIndex:0];
     
-    cell.textLabel.text = [_exercises objectAtIndex:indexPath.row];
-  //  cell.detailTextLabel.text = [_totalSets objectAtIndex:indexPath.row];
+    cell.exerciseNameLabel.text = [_exercises objectAtIndex:indexPath.row];
+    cell.totalSetsLabel.text = [NSString stringWithFormat:@"%@", [_totalSets objectAtIndex:indexPath.row]];
+    cell.currentSetsLabel.text = [NSString stringWithFormat:@"%@", [_currentSets objectAtIndex:indexPath.row]];
+    
+    cell.increaseButton.tag = indexPath.row;
+    cell.decreaseButton.tag = indexPath.row;
     
     return cell;
 }

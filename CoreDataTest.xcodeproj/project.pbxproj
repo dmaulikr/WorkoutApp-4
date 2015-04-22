@@ -13,6 +13,8 @@
 		D8BC0E8F1A817BA80042B0D4 /* Exercises.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BC0E8E1A817BA80042B0D4 /* Exercises.m */; };
 		D8D969701AD1FD5A007F1096 /* SelectWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D9696F1AD1FD5A007F1096 /* SelectWorkoutViewController.m */; };
 		D8D969731AD204C4007F1096 /* ActiveWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D969721AD204C4007F1096 /* ActiveWorkoutViewController.m */; };
+		D8E173051AE847C8008F0EE3 /* ActiveWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8E173041AE847C8008F0EE3 /* ActiveWorkoutCell.xib */; };
+		D8E1730B1AE84A61008F0EE3 /* ActiveWorkoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E1730A1AE84A61008F0EE3 /* ActiveWorkoutCell.m */; };
 		D8E400D319E47FA600402606 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E400D219E47FA600402606 /* main.m */; };
 		D8E400D619E47FA600402606 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E400D519E47FA600402606 /* AppDelegate.m */; };
 		D8E400D919E47FA600402606 /* CoreDataTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D8E400D719E47FA600402606 /* CoreDataTest.xcdatamodeld */; };
@@ -47,6 +49,9 @@
 		D8D9696F1AD1FD5A007F1096 /* SelectWorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWorkoutViewController.m; sourceTree = "<group>"; };
 		D8D969711AD204C4007F1096 /* ActiveWorkoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveWorkoutViewController.h; sourceTree = "<group>"; };
 		D8D969721AD204C4007F1096 /* ActiveWorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveWorkoutViewController.m; sourceTree = "<group>"; };
+		D8E173041AE847C8008F0EE3 /* ActiveWorkoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveWorkoutCell.xib; sourceTree = "<group>"; };
+		D8E173091AE84A61008F0EE3 /* ActiveWorkoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveWorkoutCell.h; sourceTree = "<group>"; };
+		D8E1730A1AE84A61008F0EE3 /* ActiveWorkoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveWorkoutCell.m; sourceTree = "<group>"; };
 		D8E400CD19E47FA600402606 /* CoreDataTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D8E400D119E47FA600402606 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D8E400D219E47FA600402606 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -130,6 +135,9 @@
 				D8E400D019E47FA600402606 /* Supporting Files */,
 				D8BC0E8D1A817BA80042B0D4 /* Exercises.h */,
 				D8BC0E8E1A817BA80042B0D4 /* Exercises.m */,
+				D8E173041AE847C8008F0EE3 /* ActiveWorkoutCell.xib */,
+				D8E173091AE84A61008F0EE3 /* ActiveWorkoutCell.h */,
+				D8E1730A1AE84A61008F0EE3 /* ActiveWorkoutCell.m */,
 			);
 			path = CoreDataTest;
 			sourceTree = "<group>";
@@ -243,6 +251,7 @@
 				D8E400DF19E47FA600402606 /* Main.storyboard in Resources */,
 				D8E400E419E47FA600402606 /* LaunchScreen.xib in Resources */,
 				D80B51B11A43344A003DC4FD /* file.txt in Resources */,
+				D8E173051AE847C8008F0EE3 /* ActiveWorkoutCell.xib in Resources */,
 				D8E400E119E47FA600402606 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -266,6 +275,7 @@
 				D8E400D919E47FA600402606 /* CoreDataTest.xcdatamodeld in Sources */,
 				D80B51A71A41F538003DC4FD /* AddExerciseViewController.m in Sources */,
 				D8D969731AD204C4007F1096 /* ActiveWorkoutViewController.m in Sources */,
+				D8E1730B1AE84A61008F0EE3 /* ActiveWorkoutCell.m in Sources */,
 				D8BC0E8F1A817BA80042B0D4 /* Exercises.m in Sources */,
 				D80B51AD1A423CC0003DC4FD /* AddExerciseDetailsViewController.m in Sources */,
 				D8D969701AD1FD5A007F1096 /* SelectWorkoutViewController.m in Sources */,

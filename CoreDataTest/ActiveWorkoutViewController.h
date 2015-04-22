@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITableView *exercisesTableView;
 @property (strong, nonatomic) NSMutableArray *exercises;
+@property (strong, nonatomic) NSMutableArray *currentSets;
 @property (strong, nonatomic) NSMutableArray *totalSets;
 @property (strong, nonatomic) NSString *workoutName;
 

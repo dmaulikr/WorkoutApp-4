@@ -134,20 +134,7 @@
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        // PROBLEM HERE
-        /*
-        
-        
-        ||
-        ||
-        ||
-        ||
-        ||
-        ||
-        ||
-       \\//
-        \/
-         */
+
         NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"WorkoutHasExercise" inManagedObjectContext:context];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:entityDesc];
