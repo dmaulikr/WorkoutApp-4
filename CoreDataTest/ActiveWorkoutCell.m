@@ -13,6 +13,7 @@
 
 - (void)awakeFromNib {
     // Initialization code
+    _exerciseNameLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -22,19 +23,17 @@
 }
 - (IBAction)decreaseSets:(id)sender {
     ActiveWorkoutViewController *vc = [[ActiveWorkoutViewController alloc] init];
-    
-    NSInteger value = [vc.currentSets[[sender tag]] integerValue];
-    NSInteger newValue = value - 1;
-    vc.currentSets[[sender tag]] = [NSNumber numberWithInteger:newValue];
+    [vc decreaseSets:[sender tag]];
 }
 
 - (IBAction)increaseSets:(id)sender {
     ActiveWorkoutViewController *vc = [[ActiveWorkoutViewController alloc] init];
-    
-    NSInteger value = [vc.currentSets[[sender tag]] integerValue];
-    NSInteger newValue = value + 1;
-    vc.currentSets[[sender tag]] = [NSNumber numberWithInteger:newValue];
-    NSLog(@"%@", [NSNumber numberWithInteger:newValue]);
-
+ /*   NSInteger row = [sender tag];
+    if (vc.currentSets[row] < vc.totalSets[row]) {
+        [vc increaseSets];
+    } else {
+        _increaseButton.enabled = NO;
+    }*/
+    [vc increaseSets:[sender tag]];
 }
 @end

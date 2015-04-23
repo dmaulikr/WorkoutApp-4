@@ -18,7 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    _workouts = [NSMutableArray array];
+
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -38,10 +39,10 @@
     } else {
         for (int x = 0; x < [objects count]; x++) {
             matches = objects[x];
-            _workouts = [NSMutableArray array];
             [_workouts addObject:[matches valueForKey:@"name"]];
         }
     }
+    [_workoutsTableView reloadData];
 
 }
 

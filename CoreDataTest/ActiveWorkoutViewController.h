@@ -15,6 +15,12 @@
 @property (strong, nonatomic) NSMutableArray *exercises;
 @property (strong, nonatomic) NSMutableArray *currentSets;
 @property (strong, nonatomic) NSMutableArray *totalSets;
+@property (strong, nonatomic) NSMutableArray *totalReps;
 @property (strong, nonatomic) NSString *workoutName;
+
+-(void)increaseSets:(NSInteger)row;
+-(void)decreaseSets:(NSInteger)row;
+
+-(void)fetchData;
 
 @end

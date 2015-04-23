@@ -18,9 +18,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
     _titleLabel.text = _workoutName;
     _exercisesTableView.allowsSelection = NO;
+    [self fetchData];
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)fetchData {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -30,11 +40,11 @@
     NSFetchRequest *request = [[NSFetchRequest alloc] init];
     [request setEntity:entityDesc];
     request.resultType = NSDictionaryResultType;
-    //request.propertiesToFetch = [NSArray arrayWithObjects:@"exerciseName", @"reps", @"sets", nil];
+    request.propertiesToFetch = [NSArray arrayWithObjects:@"exerciseName", @"reps", @"sets", nil];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"(workoutName = %@)", _workoutName];
     [request setPredicate:pred];
-
+    
     NSManagedObject *matches = nil;
     
     NSError *error;
@@ -43,22 +53,21 @@
     if ([objects count] == 0) {
         //Alert view: NO EXERCISES
     } else {
+        _exercises = [NSMutableArray array];
+        _totalSets = [NSMutableArray array];
+        _currentSets = [NSMutableArray array];
+        _totalReps = [NSMutableArray array];
         for (int x = 0; x < [objects count]; x++) {
             matches = objects[x];
-            _exercises = [NSMutableArray array];
-            _totalSets = [NSMutableArray array];
-            _currentSets = [NSMutableArray array];
+            NSLog(@"%d %lu", x, (unsigned long)[objects count]);
             [_exercises addObject:[matches valueForKey:@"exerciseName"]];
             [_totalSets addObject:[matches valueForKey:@"sets"]];
+            [_totalReps addObject:[matches valueForKey:@"reps"]];
             [_currentSets addObject:[NSNumber numberWithInteger:0]];
         }
     }
-
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [_exercisesTableView reloadData];
+   
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,7 +78,7 @@
     cell = [nib objectAtIndex:0];
     
     cell.exerciseNameLabel.text = [_exercises objectAtIndex:indexPath.row];
-    cell.totalSetsLabel.text = [NSString stringWithFormat:@"%@", [_totalSets objectAtIndex:indexPath.row]];
+    cell.totalSetsLabel.text = [NSString stringWithFormat:@"%@  x  %@", _totalSets[indexPath.row], _totalReps[indexPath.row]];
     cell.currentSetsLabel.text = [NSString stringWithFormat:@"%@", [_currentSets objectAtIndex:indexPath.row]];
     
     cell.increaseButton.tag = indexPath.row;
@@ -88,6 +97,19 @@
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
+}
+
+-(void)increaseSets:(NSInteger)row {
+    [self fetchData];
+  //  NSInteger newValue = [_currentSets[vc.increaseButton.tag] integerValue] + 1;
+ //   NSLog(@"%ld", (long)newValue);
+   // _currentSets[row] = [NSNumber numberWithInteger:newValue];
+  //  [_currentSets replaceObjectAtIndex:0 withObject:[NSNumber numberWithInteger:5]];
+   // [_exercisesTableView reloadData];
+}
+
+-(void)decreaseSets:(NSInteger)row {
+    //NSLog(@"-1");
 }
 
 
