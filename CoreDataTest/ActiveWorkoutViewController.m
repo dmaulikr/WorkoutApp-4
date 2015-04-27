@@ -9,6 +9,7 @@
 #import "ActiveWorkoutViewController.h"
 #import "AppDelegate.h"
 #import "ActiveWorkoutCell.h"
+#import "SelectWorkoutViewController.h"
 
 @interface ActiveWorkoutViewController ()
 
@@ -18,11 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    _exercises = [NSMutableArray array];
+    _totalSets = [NSMutableArray array];
+    _currentSets = [NSMutableArray array];
+    _totalReps = [NSMutableArray array];
+
     _titleLabel.text = _workoutName;
     _exercisesTableView.allowsSelection = NO;
-    [self fetchData];
-    
+    [self getData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,7 +34,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)fetchData {
+-(void)getData {
     AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     NSManagedObjectContext *context = [appDelegate managedObjectContext];
@@ -42,24 +46,26 @@
     request.resultType = NSDictionaryResultType;
     request.propertiesToFetch = [NSArray arrayWithObjects:@"exerciseName", @"reps", @"sets", nil];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(workoutName = %@)", _workoutName];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"(workoutName == %@)", _workoutName];
     [request setPredicate:pred];
     
     NSManagedObject *matches = nil;
     
     NSError *error;
     NSArray *objects = [context executeFetchRequest:request error:&error];
-    
+        
     if ([objects count] == 0) {
-        //Alert view: NO EXERCISES
+        //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No exercises!" message:@"You need to add some exercises to this workout!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
+        
+        //[alert show];
     } else {
-        _exercises = [NSMutableArray array];
-        _totalSets = [NSMutableArray array];
-        _currentSets = [NSMutableArray array];
-        _totalReps = [NSMutableArray array];
+        [_exercises removeAllObjects];
+        [_totalSets removeAllObjects];
+        [_totalReps removeAllObjects];
+        [_currentSets removeAllObjects];
         for (int x = 0; x < [objects count]; x++) {
             matches = objects[x];
-            NSLog(@"%d %lu", x, (unsigned long)[objects count]);
+           // NSLog(@"%d %lu", x, (unsigned long)[objects count]);
             [_exercises addObject:[matches valueForKey:@"exerciseName"]];
             [_totalSets addObject:[matches valueForKey:@"sets"]];
             [_totalReps addObject:[matches valueForKey:@"reps"]];
@@ -84,6 +90,8 @@
     cell.increaseButton.tag = indexPath.row;
     cell.decreaseButton.tag = indexPath.row;
     
+    cell.delegate = self;
+    
     return cell;
 }
 
@@ -98,9 +106,9 @@
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-
+/*
 -(void)increaseSets:(NSInteger)row {
-    [self fetchData];
+    [self getData];
   //  NSInteger newValue = [_currentSets[vc.increaseButton.tag] integerValue] + 1;
  //   NSLog(@"%ld", (long)newValue);
    // _currentSets[row] = [NSNumber numberWithInteger:newValue];
@@ -110,6 +118,23 @@
 
 -(void)decreaseSets:(NSInteger)row {
     //NSLog(@"-1");
+}*/
+
+-(void)changeSetsForViewController:(ActiveWorkoutCell *)viewController increase:(BOOL)increase row:(NSInteger)row {
+    //[self getData];
+    
+    if (increase == YES) {
+        if ([_currentSets [row] integerValue] < [_totalSets[row] integerValue]) {
+            NSInteger newValue = [_currentSets[row] integerValue] + 1;
+            [_currentSets replaceObjectAtIndex:row withObject:[NSNumber numberWithInteger:newValue]];
+        }
+        //[_currentSets replaceObjectAtIndex:0 withObject:[NSNumber numberWithInteger:5]];
+
+    } else if (increase == NO){
+        
+    }
+    
+    [_exercisesTableView reloadData];
 }
 
 

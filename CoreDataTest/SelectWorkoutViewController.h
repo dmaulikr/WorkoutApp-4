@@ -14,4 +14,6 @@
 @property (strong, nonatomic) NSMutableArray *workouts;
 @property (strong, nonatomic) NSString *selectedWorkout;
 
+- (IBAction)unwindToSelectWorkoutViewController:(UIStoryboardSegue *)unwindSegue;
+
 @end

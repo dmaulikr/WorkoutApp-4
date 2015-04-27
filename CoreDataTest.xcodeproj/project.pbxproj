@@ -13,6 +13,7 @@
 		D8BC0E8F1A817BA80042B0D4 /* Exercises.m in Sources */ = {isa = PBXBuildFile; fileRef = D8BC0E8E1A817BA80042B0D4 /* Exercises.m */; };
 		D8D969701AD1FD5A007F1096 /* SelectWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D9696F1AD1FD5A007F1096 /* SelectWorkoutViewController.m */; };
 		D8D969731AD204C4007F1096 /* ActiveWorkoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8D969721AD204C4007F1096 /* ActiveWorkoutViewController.m */; };
+		D8E0444C1AEEC46A00EACF42 /* StartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E0444B1AEEC46A00EACF42 /* StartPageViewController.m */; };
 		D8E173051AE847C8008F0EE3 /* ActiveWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8E173041AE847C8008F0EE3 /* ActiveWorkoutCell.xib */; };
 		D8E1730B1AE84A61008F0EE3 /* ActiveWorkoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E1730A1AE84A61008F0EE3 /* ActiveWorkoutCell.m */; };
 		D8E400D319E47FA600402606 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D8E400D219E47FA600402606 /* main.m */; };
@@ -49,6 +50,8 @@
 		D8D9696F1AD1FD5A007F1096 /* SelectWorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectWorkoutViewController.m; sourceTree = "<group>"; };
 		D8D969711AD204C4007F1096 /* ActiveWorkoutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveWorkoutViewController.h; sourceTree = "<group>"; };
 		D8D969721AD204C4007F1096 /* ActiveWorkoutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveWorkoutViewController.m; sourceTree = "<group>"; };
+		D8E0444A1AEEC46A00EACF42 /* StartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartPageViewController.h; sourceTree = "<group>"; };
+		D8E0444B1AEEC46A00EACF42 /* StartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartPageViewController.m; sourceTree = "<group>"; };
 		D8E173041AE847C8008F0EE3 /* ActiveWorkoutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActiveWorkoutCell.xib; sourceTree = "<group>"; };
 		D8E173091AE84A61008F0EE3 /* ActiveWorkoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActiveWorkoutCell.h; sourceTree = "<group>"; };
 		D8E1730A1AE84A61008F0EE3 /* ActiveWorkoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActiveWorkoutCell.m; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 				D8E400D419E47FA600402606 /* AppDelegate.h */,
 				D8E400D519E47FA600402606 /* AppDelegate.m */,
 				D8E400DD19E47FA600402606 /* Main.storyboard */,
+				D8E0444A1AEEC46A00EACF42 /* StartPageViewController.h */,
+				D8E0444B1AEEC46A00EACF42 /* StartPageViewController.m */,
 				D8E400DA19E47FA600402606 /* ViewController.h */,
 				D8E400DB19E47FA600402606 /* ViewController.m */,
 				D8D969711AD204C4007F1096 /* ActiveWorkoutViewController.h */,
@@ -280,6 +285,7 @@
 				D80B51AD1A423CC0003DC4FD /* AddExerciseDetailsViewController.m in Sources */,
 				D8D969701AD1FD5A007F1096 /* SelectWorkoutViewController.m in Sources */,
 				D8E400DC19E47FA600402606 /* ViewController.m in Sources */,
+				D8E0444C1AEEC46A00EACF42 /* StartPageViewController.m in Sources */,
 				D8E400FE19E6E8EB00402606 /* EditWorkoutViewController.m in Sources */,
 				D8E400D319E47FA600402606 /* main.m in Sources */,
 			);

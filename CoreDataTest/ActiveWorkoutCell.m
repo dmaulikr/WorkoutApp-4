@@ -22,18 +22,31 @@
     // Configure the view for the selected state
 }
 - (IBAction)decreaseSets:(id)sender {
-    ActiveWorkoutViewController *vc = [[ActiveWorkoutViewController alloc] init];
-    [vc decreaseSets:[sender tag]];
+    id<ActiveWorkoutCellDelegate> strongDelegate = self.delegate;
+    
+    if ([strongDelegate respondsToSelector:@selector(changeSetsForViewController:increase:row:)]) {
+        [strongDelegate changeSetsForViewController:self increase:NO row:[sender tag]];
+    }
+    
+    
+    
+    //[vc decreaseSets:[sender tag]];
 }
 
 - (IBAction)increaseSets:(id)sender {
-    ActiveWorkoutViewController *vc = [[ActiveWorkoutViewController alloc] init];
  /*   NSInteger row = [sender tag];
     if (vc.currentSets[row] < vc.totalSets[row]) {
         [vc increaseSets];
     } else {
         _increaseButton.enabled = NO;
     }*/
-    [vc increaseSets:[sender tag]];
+    //[vc increaseSets:[sender tag]];
+    
+    id<ActiveWorkoutCellDelegate> strongDelegate = self.delegate;
+    
+    if ([strongDelegate respondsToSelector:@selector(changeSetsForViewController:increase:row:)]) {
+        [strongDelegate changeSetsForViewController:self increase:YES row:[sender tag]];
+    }
+
 }
 @end

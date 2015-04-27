@@ -7,8 +7,9 @@
 //
 
 #import "ViewController.h"
+#import "ActiveWorkoutCell.h"
 
-@interface ActiveWorkoutViewController : ViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ActiveWorkoutViewController : ViewController <UITableViewDataSource, UITableViewDelegate, ActiveWorkoutCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITableView *exercisesTableView;
@@ -17,10 +18,12 @@
 @property (strong, nonatomic) NSMutableArray *totalSets;
 @property (strong, nonatomic) NSMutableArray *totalReps;
 @property (strong, nonatomic) NSString *workoutName;
+@property (strong, nonatomic) NSString *lol;
+
 
 -(void)increaseSets:(NSInteger)row;
 -(void)decreaseSets:(NSInteger)row;
 
--(void)fetchData;
+-(void)getData;
 
 @end
