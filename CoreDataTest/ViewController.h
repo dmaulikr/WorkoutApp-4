@@ -19,7 +19,8 @@
 //- (void)addWorkout:(NSString *)workoutName withNumberOfExercises:(NSNumber*)numberOfExercises;
 - (void)addWorkout:(NSString *)workoutName;
 - (void)fetchData;
-- (IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue;
+- (IBAction)unwindToWorkoutList:(UIStoryboardSegue *)unwindSegue;
+- (IBAction)unwindToWorkoutListAndSave:(UIStoryboardSegue *)unwindSegue;
 //- (IBAction)saveWorkout:(UIStoryboardSegue *)unwindSegue;
 
 @end

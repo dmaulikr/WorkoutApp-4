@@ -37,86 +37,86 @@
 
 -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
- 
+        
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
- 
+        
         NSManagedObjectContext *context = [appDelegate managedObjectContext];
- 
+        
         NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
         NSFetchRequest *request = [[NSFetchRequest alloc] init];
         [request setEntity:entityDesc];
- 
+        
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", _workoutsArray[indexPath.row]];
         [request setPredicate:pred];
- 
+        
         NSError *error;
         NSArray *objects = [context executeFetchRequest:request error:&error];
- 
+        
         for (NSManagedObject *managedObject in objects) {
-        [context deleteObject:managedObject];
+            [context deleteObject:managedObject];
         }
- 
+        
         NSError *deleteError = nil;
         if (![context save:&deleteError]) {
-        NSLog(@"uh oh");
+            NSLog(@"uh oh");
         }
         [_tableView beginUpdates];
         [_workoutsArray removeObjectAtIndex:indexPath.row];
         [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [_tableView endUpdates];
         [self fetchData];
-
+        
     }
 }
 
 /*
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        _deleteWorkoutIndexPath = indexPath;
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete workout" message:@"Are you sure you want to delete the workout?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
-        
-        [alert show];
-        
-        }
-
-}
-
--(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == 0) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-            
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-            
-        NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityDesc];
-            
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", _workoutsArray[_deleteWorkoutIndexPath.row]];
-        [request setPredicate:pred];
-            
-        NSError *error;
-        NSArray *objects = [context executeFetchRequest:request error:&error];
-            
-        for (NSManagedObject *managedObject in objects) {
-            [context deleteObject:managedObject];
-        }
-            
-        NSError *deleteError = nil;
-        if (![context save:&deleteError]) {
-            NSLog(@"uh oh");
-        }
-        [_tableView beginUpdates];
-        [_workoutsArray removeObjectAtIndex:_deleteWorkoutIndexPath.row];
-        [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:_deleteWorkoutIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [_tableView endUpdates];
-        [self fetchData];
-
-    } else {
-        
-    }
-
-}
+ -(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+ 
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ _deleteWorkoutIndexPath = indexPath;
+ UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Delete workout" message:@"Are you sure you want to delete the workout?" delegate:self cancelButtonTitle:@"Yes" otherButtonTitles:@"No", nil];
+ 
+ [alert show];
+ 
+ }
+ 
+ }
+ 
+ -(void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+ if (buttonIndex == 0) {
+ AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+ 
+ NSManagedObjectContext *context = [appDelegate managedObjectContext];
+ 
+ NSEntityDescription *entityDesc = [NSEntityDescription entityForName:@"Workout" inManagedObjectContext:context];
+ NSFetchRequest *request = [[NSFetchRequest alloc] init];
+ [request setEntity:entityDesc];
+ 
+ NSPredicate *pred = [NSPredicate predicateWithFormat:@"(name = %@)", _workoutsArray[_deleteWorkoutIndexPath.row]];
+ [request setPredicate:pred];
+ 
+ NSError *error;
+ NSArray *objects = [context executeFetchRequest:request error:&error];
+ 
+ for (NSManagedObject *managedObject in objects) {
+ [context deleteObject:managedObject];
+ }
+ 
+ NSError *deleteError = nil;
+ if (![context save:&deleteError]) {
+ NSLog(@"uh oh");
+ }
+ [_tableView beginUpdates];
+ [_workoutsArray removeObjectAtIndex:_deleteWorkoutIndexPath.row];
+ [_tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:_deleteWorkoutIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+ [_tableView endUpdates];
+ [self fetchData];
+ 
+ } else {
+ 
+ }
+ 
+ }
  */
 
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -160,15 +160,17 @@
     NSArray *objects = [context executeFetchRequest:request error:&error];
     
     if ([objects count] == 0) {
- //       NSLog(@"No matches");
+        //       NSLog(@"No matches");
     } else {
         [_workoutsArray removeAllObjects];
         for (int x = 0; x < [objects count]; x++) {
             matches = objects[x];
-            [_workoutsArray addObject:[matches valueForKey:@"name"]];
+            if ([matches valueForKey:@"name"]) {
+                [_workoutsArray addObject:[matches valueForKey:@"name"]];
+            }
         }
         [_tableView reloadData];
-     //   NSLog(@"%lu matches found", (unsigned long)[objects count]);
+        //   NSLog(@"%lu matches found", (unsigned long)[objects count]);
     }
     
 }
@@ -190,12 +192,14 @@
         
         NSError *error;
         NSArray *objects = [context executeFetchRequest:request error:&error];
-        if ([objects count] == 0) {
+        
+        if (![objects count]) {
             NSManagedObject *newWorkout;
             newWorkout = [NSEntityDescription insertNewObjectForEntityForName:@"Workout" inManagedObjectContext:context];
-          //  [newWorkout]
+            //  [newWorkout]
             [newWorkout setValue:trimmedString forKey:@"name"];
             NSError *error;
+            
             [context save:&error];
             //   NSLog(@"Contact saved");
             
@@ -221,54 +225,54 @@
     }
 }
 /*
--(IBAction)saveWorkout:(UIStoryboardSegue *)unwindSegue {
-    //Grab the exercise names and numbers of sets/reps from EditWorkoutViewController
-    //Then save them to CoreData
-    EditWorkoutViewController *vc = [unwindSegue sourceViewController];
-    
-    if ([vc.exercisesArray count] != 0) {
-        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
-        
-        
-        //DELETE all entries with workout name = _selectedWorkoutName before adding the new ones
-        //For x = 1 to [vc.exercisesArray count]
-        //add exercise
-        //Fetch
-        NSError *error;
-        NSManagedObject *newWorkout;
-        for (int x = 0; x < [vc.exercisesArray count]; x++) {
-            newWorkout = [NSEntityDescription insertNewObjectForEntityForName:@"WorkoutHasExercise" inManagedObjectContext:context];
-            [newWorkout setValue:_selectedWorkoutName forKey:@"workoutName"];
-            [newWorkout setValue:vc.exercisesArray[x] forKey:@"exerciseName"];
-            [newWorkout setValue:vc.numberOfSets[x] forKey:@"sets"];
-            [newWorkout setValue:vc.numberOfReps[x] forKey:@"reps"];
-        }
-        [context save:&error];
-        
-        [self fetchData];
-    } else {
-        NSLog(@"No exercises!");
-        //Alert
-    }
-    
-    
-    [_tableView reloadData];
-} */
+ -(IBAction)saveWorkout:(UIStoryboardSegue *)unwindSegue {
+ //Grab the exercise names and numbers of sets/reps from EditWorkoutViewController
+ //Then save them to CoreData
+ EditWorkoutViewController *vc = [unwindSegue sourceViewController];
+ 
+ if ([vc.exercisesArray count] != 0) {
+ AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+ 
+ NSManagedObjectContext *context = [appDelegate managedObjectContext];
+ 
+ 
+ //DELETE all entries with workout name = _selectedWorkoutName before adding the new ones
+ //For x = 1 to [vc.exercisesArray count]
+ //add exercise
+ //Fetch
+ NSError *error;
+ NSManagedObject *newWorkout;
+ for (int x = 0; x < [vc.exercisesArray count]; x++) {
+ newWorkout = [NSEntityDescription insertNewObjectForEntityForName:@"WorkoutHasExercise" inManagedObjectContext:context];
+ [newWorkout setValue:_selectedWorkoutName forKey:@"workoutName"];
+ [newWorkout setValue:vc.exercisesArray[x] forKey:@"exerciseName"];
+ [newWorkout setValue:vc.numberOfSets[x] forKey:@"sets"];
+ [newWorkout setValue:vc.numberOfReps[x] forKey:@"reps"];
+ }
+ [context save:&error];
+ 
+ [self fetchData];
+ } else {
+ NSLog(@"No exercises!");
+ //Alert
+ }
+ 
+ 
+ [_tableView reloadData];
+ } */
 
--(IBAction)unwindToHomeViewController:(UIStoryboardSegue *)unwindSegue {
+-(void)unwindToWorkoutList:(UIStoryboardSegue *)unwindSegue {
+    [_tableView reloadData];
+}
+
+-(IBAction)unwindToWorkoutListAndSave:(UIStoryboardSegue *)unwindSegue {
     UIViewController* sourceViewController = unwindSegue.sourceViewController;
     
     if ([sourceViewController isKindOfClass:[AddWorkoutViewController class]]) {
-
+        
         AddWorkoutViewController *vc = [unwindSegue sourceViewController];
         
         [self addWorkout:vc.workoutNameTextField.text];
-    
-    } else if ([sourceViewController isKindOfClass:[EditWorkoutViewController class]]) {
-        
-        
     }
     [_tableView reloadData];
 }

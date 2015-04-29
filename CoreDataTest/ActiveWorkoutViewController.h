@@ -20,9 +20,7 @@
 @property (strong, nonatomic) NSString *workoutName;
 @property (strong, nonatomic) NSString *lol;
 
-
--(void)increaseSets:(NSInteger)row;
--(void)decreaseSets:(NSInteger)row;
+@property (weak, nonatomic) IBOutlet UIButton *finishButton;
 
 -(void)getData;
 

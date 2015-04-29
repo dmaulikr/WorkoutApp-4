@@ -15,18 +15,16 @@
 @property (weak, nonatomic) IBOutlet UILabel *exerciseNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *currentSetsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalSetsLabel;
-@property (weak, nonatomic) IBOutlet UIButton *decreaseButton;
 @property (weak, nonatomic) IBOutlet UIButton *increaseButton;
 
 @property (weak, nonatomic) id<ActiveWorkoutCellDelegate> delegate;
 
-- (IBAction)decreaseSets:(id)sender;
-- (IBAction)increaseSets:(id)sender;
+-(void)increase;
 
 @end
 
 @protocol ActiveWorkoutCellDelegate <NSObject>
 
-- (void)changeSetsForViewController:(ActiveWorkoutCell*)viewController increase:(BOOL)increase row:(NSInteger)row;
+- (void)changeSetsForViewController:(ActiveWorkoutCell*)viewController row:(NSInteger)row;
 
 @end

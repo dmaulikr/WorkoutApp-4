@@ -39,7 +39,9 @@
     } else {
         for (int x = 0; x < [objects count]; x++) {
             matches = objects[x];
-            [_workouts addObject:[matches valueForKey:@"name"]];
+            if ([matches valueForKey:@"name"]) {
+                [_workouts addObject:[matches valueForKey:@"name"]];
+            }
         }
     }
     [_workoutsTableView reloadData];

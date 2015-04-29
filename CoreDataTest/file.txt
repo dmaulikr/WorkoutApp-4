@@ -2,4 +2,15 @@ Squat
 Deadlift
 Overhead press
 Bench press
-Pendlay row
+Barbell row
+Bicep curl
+Tricep extension
+Dumbbell flye
+Cable flye
+Leg press
+Leg extension
+Calf raise
+Pull up
+Lat pulldown
+Seated row
+Dip

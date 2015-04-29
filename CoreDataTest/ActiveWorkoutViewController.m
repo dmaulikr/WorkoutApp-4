@@ -23,7 +23,7 @@
     _totalSets = [NSMutableArray array];
     _currentSets = [NSMutableArray array];
     _totalReps = [NSMutableArray array];
-
+    [_finishButton setTitleColor:[UIColor grayColor] forState:UIControlStateDisabled];
     _titleLabel.text = _workoutName;
     _exercisesTableView.allowsSelection = NO;
     [self getData];
@@ -53,7 +53,7 @@
     
     NSError *error;
     NSArray *objects = [context executeFetchRequest:request error:&error];
-        
+    
     if ([objects count] == 0) {
         //UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No exercises!" message:@"You need to add some exercises to this workout!" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:nil, nil];
         
@@ -65,7 +65,7 @@
         [_currentSets removeAllObjects];
         for (int x = 0; x < [objects count]; x++) {
             matches = objects[x];
-           // NSLog(@"%d %lu", x, (unsigned long)[objects count]);
+            // NSLog(@"%d %lu", x, (unsigned long)[objects count]);
             [_exercises addObject:[matches valueForKey:@"exerciseName"]];
             [_totalSets addObject:[matches valueForKey:@"sets"]];
             [_totalReps addObject:[matches valueForKey:@"reps"]];
@@ -73,7 +73,7 @@
         }
     }
     [_exercisesTableView reloadData];
-   
+    
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -87,8 +87,11 @@
     cell.totalSetsLabel.text = [NSString stringWithFormat:@"%@  x  %@", _totalSets[indexPath.row], _totalReps[indexPath.row]];
     cell.currentSetsLabel.text = [NSString stringWithFormat:@"%@", [_currentSets objectAtIndex:indexPath.row]];
     
-    cell.increaseButton.tag = indexPath.row;
-    cell.decreaseButton.tag = indexPath.row;
+    cell.currentSetsLabel.tag = indexPath.row;
+    
+    if ([_currentSets[indexPath.row] integerValue] == [_totalSets[indexPath.row] integerValue]) {
+        cell.contentView.backgroundColor = [UIColor colorWithRed:1 green:0.541 blue:0.541 alpha:1];
+    }
     
     cell.delegate = self;
     
@@ -107,31 +110,36 @@
     return 1;
 }
 /*
--(void)increaseSets:(NSInteger)row {
-    [self getData];
-  //  NSInteger newValue = [_currentSets[vc.increaseButton.tag] integerValue] + 1;
+ -(void)increaseSets:(NSInteger)row {
+ [self getData];
+ //  NSInteger newValue = [_currentSets[vc.increaseButton.tag] integerValue] + 1;
  //   NSLog(@"%ld", (long)newValue);
-   // _currentSets[row] = [NSNumber numberWithInteger:newValue];
-  //  [_currentSets replaceObjectAtIndex:0 withObject:[NSNumber numberWithInteger:5]];
-   // [_exercisesTableView reloadData];
-}
+ // _currentSets[row] = [NSNumber numberWithInteger:newValue];
+ //  [_currentSets replaceObjectAtIndex:0 withObject:[NSNumber numberWithInteger:5]];
+ // [_exercisesTableView reloadData];
+ }
+ 
+ -(void)decreaseSets:(NSInteger)row {
+ //NSLog(@"-1");
+ }*/
 
--(void)decreaseSets:(NSInteger)row {
-    //NSLog(@"-1");
-}*/
-
--(void)changeSetsForViewController:(ActiveWorkoutCell *)viewController increase:(BOOL)increase row:(NSInteger)row {
+-(void)changeSetsForViewController:(ActiveWorkoutCell *)viewController row:(NSInteger)row {
     //[self getData];
     
-    if (increase == YES) {
-        if ([_currentSets [row] integerValue] < [_totalSets[row] integerValue]) {
-            NSInteger newValue = [_currentSets[row] integerValue] + 1;
-            [_currentSets replaceObjectAtIndex:row withObject:[NSNumber numberWithInteger:newValue]];
+    if ([_currentSets[row] integerValue] < [_totalSets[row] integerValue]) {
+        NSInteger newValue = [_currentSets[row] integerValue] + 1;
+        [_currentSets replaceObjectAtIndex:row withObject:[NSNumber numberWithInteger:newValue]];
+    }
+    //[_currentSets replaceObjectAtIndex:0 withObject:[NSNumber numberWithInteger:5]];
+    
+    NSInteger setFinishCount = 0;
+    for (int x = 0; x < [_exercises count] ; x++) {
+        if ([_currentSets[x] integerValue] == [_totalSets[x] integerValue]) {
+            setFinishCount += 1;
         }
-        //[_currentSets replaceObjectAtIndex:0 withObject:[NSNumber numberWithInteger:5]];
-
-    } else if (increase == NO){
-        
+    }
+    if (setFinishCount == [_exercises count]) {
+        _finishButton.enabled = YES;
     }
     
     [_exercisesTableView reloadData];
@@ -144,7 +152,13 @@
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    //Send exercise name to next view controller
+    //alertview if sender is done button
+    if (sender == _finishButton) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Workout completed" message:@"Good job!" delegate:self cancelButtonTitle:@"Continue" otherButtonTitles:nil, nil];
+        
+        [alert show];
+        
+    }
 }
 
 
