@@ -18,8 +18,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _titleLabel.text = _exerciseName;    
+    _titleLabel.text = _exerciseName;
+    _setsTextField.keyboardType = UIKeyboardTypeNumberPad;
+    _repsTextField.keyboardType = UIKeyboardTypeNumberPad;
     
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    [_setsTextField resignFirstResponder];
+    [_repsTextField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {
