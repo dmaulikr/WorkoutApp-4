@@ -79,15 +79,17 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *simpleTableIdentifier = @"Cell";
     
+    
     ActiveWorkoutCell *cell = (ActiveWorkoutCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"ActiveWorkoutCell" owner:self options:nil];
     cell = [nib objectAtIndex:0];
     
-    cell.exerciseNameLabel.text = [_exercises objectAtIndex:indexPath.row];
-    cell.totalSetsLabel.text = [NSString stringWithFormat:@"%@  x  %@", _totalSets[indexPath.row], _totalReps[indexPath.row]];
-    cell.currentSetsLabel.text = [NSString stringWithFormat:@"%@", [_currentSets objectAtIndex:indexPath.row]];
     
-    cell.currentSetsLabel.tag = indexPath.row;
+    cell.exerciseNameLabel.text = [_exercises objectAtIndex:[indexPath row]];
+    cell.totalSetsLabel.text = [NSString stringWithFormat:@"%@  x  %@", _totalSets[indexPath.row], _totalReps[[indexPath row]]];
+    cell.currentSetsLabel.text = [NSString stringWithFormat:@"%@", [_currentSets objectAtIndex:[indexPath row]]];
+        
+    cell.currentSetsLabel.tag = [indexPath row];
     
     if ([_currentSets[indexPath.row] integerValue] == [_totalSets[indexPath.row] integerValue]) {
         cell.contentView.backgroundColor = [UIColor colorWithRed:1 green:0.541 blue:0.541 alpha:1];
